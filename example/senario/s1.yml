@@ -1,0 +1,34 @@
+# ---------------------------------------------------------------------------------------------------
+# シナリオを定義する
+#
+# ---------------------------------------------------------------------------------------------------
+
+type: Senario # シナリオ定義であることを示す
+name: S1-0000 # （optional）シナリオの名称
+description: Senario 1-0000
+key: s1
+version: 0.1.0
+meta:
+  author: AtsukiImamura
+senario:
+  - endpoint: ep1.1
+    key: s1.1 # このシナリオの中で一意のキー
+    name: Senario 1.1
+    description: Something is being tested.
+    input: # 入力値を設定する（エンドポイント定義に従う）デフォルトにする場合は指定不要
+      - key: userName
+        value: ohmoon
+      - key: auth
+        from: user/conf.auth # value/user.yml から conf.auth を探索して設定する
+    output:
+      - key: photoUri
+        # ここのAssertionの書き方悩む
+  - endpont: ep1.2
+    key: s1.2
+    name: Senario 1.2
+    input:
+      - key: userId
+        thru: s1.1/userId # このシナリオの中でこれ以前のエンドポイントからの返却値を参照
+    output:
+      - key: userName
+        equals: s1.1/userNameO # s1.1 のアウトプットの userName と比較

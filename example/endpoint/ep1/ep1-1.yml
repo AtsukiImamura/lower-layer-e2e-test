@@ -1,0 +1,49 @@
+# ---------------------------------------------------------------------------------------------------
+# エンドポイント単体のテストに必要な情報の構造を定義する。（データ自体はテストケースで定義するので、構造のみ定義）
+# 
+# ---------------------------------------------------------------------------------------------------
+
+type: EndPoint # エンドポイント定義であることを示す
+name: Ep1-1  # （optional）エンドポイントの名称
+key: ep1.1   # （required）このエンドポイントのキー。全体で一意にする必要がある。アノテーションのkeyにこのkeyを付したクラスを実行する
+description: End point 1-1
+version: 0.1.0
+meta:
+  author: AtsukiImamura
+endpoint:
+  input: # 入力条件（データ）
+    conf: # テストに必要なデータで、テストケースごとの変更はないが可変のもの
+      url: http://api.example.com/v1/user
+    data:
+      - key: userName
+        type: string
+        conditions: # 事前条件
+          required: true
+          # expect: # 他のiputとの関係も定義できるとよい
+          #   - ifValueNot:
+          #     key: auth
+          #     exam: ""
+          #     value:
+      - key: infoType
+        type: int
+        default: # 直接指定でもOK => 実行時は値がMapかプリミティブかで判断
+          from: user/default.infoType
+
+  output: # 出力
+    data:
+      - key: photoUri
+        type: string
+        conditions:
+          required: true
+      - key: userName
+        type: string
+        alias: userNameO # 同じエンドポイント内にkeyがある場合は別名の付与が必須
+      - key: phoneNumbers:
+        type: list # includeで示す型のデータのリスト
+        include:
+          - key: attribute
+            type: string
+          - key: number
+            type: int
+      - key: userId
+        type: string

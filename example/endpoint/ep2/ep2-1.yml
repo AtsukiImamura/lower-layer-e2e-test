@@ -1,0 +1,8 @@
+type: EndPoint
+name: Ep1-2
+description: End point 1-2
+version: 0.1.0
+meta:
+  author: AtsukiImamura
+endpoint:
+# 以下、ep1-1と同じような構図

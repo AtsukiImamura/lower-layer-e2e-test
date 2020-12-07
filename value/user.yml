@@ -1,0 +1,5 @@
+conf:
+  auth: 1
+
+default:
+  infoType: 2

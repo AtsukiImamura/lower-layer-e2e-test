@@ -1,0 +1,32 @@
+# ---------------------------------------------------------------------------------------------------
+# テストケースのリストを定義する
+#
+# ---------------------------------------------------------------------------------------------------
+
+type: Test # シナリオ定義であることを示す
+name: T1-0000 # （optional）テストケースリストの名称
+description: Test 1-0000
+version: 0.1.0
+
+
+senario: s1 # シナリオのkeyを指定
+data:
+  - key: s1.1 # シナリオ中のキーごとにデータを用意: キーごとにinputとoutputの比較があったほうが分かりやすい。。？
+    - userName: ohmoon
+      auth: 1
+      photoUri:
+        condition: # 条件も含めてとなると、ここが大きくなりすぎる。。。？
+    - userName: ohmoon
+      auth: 0
+      photoUri:
+        condition: 
+  - key: s1.2
+    - userName: ohmoon
+      auth: 1
+      photoUri:
+        condition: # 条件も含めてとなると、ここが大きくなりすぎる。。。？
+    - userName: ohmoon
+      auth: 0
+      photoUri:
+        condition: 
+  
